@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>逾时检查示例</title>
+  </head>
+  <body>
+    <h1>逾时检查示例</h1>
+    <p>请在下面的表单中输入您的名字和电子邮件地址。</p>
+    <form action="submit-form.php" method="POST">
+      <label for="name">姓名：</label>
+      <input type="text" id="name" name="name" required><br><br>
+      <label for="email">电子邮件地址：</label>
+      <input type="email" id="email" name="email" required><br><br>
+      <button type="submit">提交</button>
+    </form>
+    <script>
+      // 设置超时时间为10秒
+      var timeoutInMilliseconds = 10000;
+
+      // 在加载页面后启动计时器
+      var timeoutId = setTimeout(function() {
+        alert("您的会话已超时，请重新加载页面。");
+        window.location.reload();
+      }, timeoutInMilliseconds);
+
+      // 如果在超时前成功提交表单，清除计时器
+      document.querySelector('form').addEventListener('submit', function() {
+        clearTimeout(timeoutId);
+      });
+    </script>
+  </body>
+</html>
